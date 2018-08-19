@@ -43,10 +43,10 @@ int main(int argc, char *argv[])
 char *lenofchar(int len, char c)
 {
     char *result = malloc((len + 1) * sizeof(char));
+
     for (int i = 0; i < len; i++)
-    {
         *(result + i) = c;
-    }
+
     *(result + len) = '\0';
     return result;
 }
@@ -71,13 +71,9 @@ void prev(char **curr, char firstchar)
         }
 
         if (*target == 'a')
-        {
             *target = 'Z';
-        }
         else
-        {
             *target = *target - 1;
-        }
     }
 
     free(allAsatlen);
