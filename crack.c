@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
 
     int saltlen = 2;
     char *salt = malloc((saltlen + 1) * sizeof(char));
+    if (salt == NULL)
+        return -1;
     strncpy(salt, hash, saltlen);
     salt[saltlen] = '\0';
 
@@ -28,6 +30,8 @@ int main(int argc, char *argv[])
     do
     {
         prev(&last, 'A');
+        if (last == NULL)
+            return -1;
         char *testhash = crypt(last, salt);
         if (strcmp(testhash, hash) == 0)
         {
@@ -44,6 +48,9 @@ char *lenofchar(int len, char c)
 {
     char *result = malloc((len + 1) * sizeof(char));
 
+    if (result == NULL)
+        return NULL;
+
     for (int i = 0; i < len; i++)
         *(result + i) = c;
 
@@ -55,6 +62,12 @@ void prev(char **curr, char firstchar)
 {
     int len = strlen(*curr);
     char *allAsatlen = lenofchar(len, firstchar);
+
+    if (allAsatlen == NULL)
+    {
+        *curr = NULL;
+        return;
+    }
 
     if (strcmp(*curr, allAsatlen) == 0)
     {

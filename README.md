@@ -8,6 +8,7 @@ This solution has two features:
 
 - It has only one layer of nested loop
 - It utilizes the pointer feature of `C`
+- The key's `MAX_LENGTH` could be changed at compile time
 
 ## Build
 
